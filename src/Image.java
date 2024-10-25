@@ -9,7 +9,7 @@ public class Image {
         pixels = new Pixel[width][height];
         for (int i = 0; i < width; i++) {
             for (int j = 0; j < height; j++) {
-                pixels[i][j] = new Pixel();  // Инициализация каждого пикселя
+                pixels[i][j] = new Pixel();
             }
         }
     }
