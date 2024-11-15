@@ -5,7 +5,6 @@ public class BrightnessFilter extends Filter{
         this.brightness = level;
     }
 
-    @Override
     public Image apply(Image image) {
         for (int i = 0; i < image.getWidth(); i++) {
             for (int j = 0; j < image.getHeight(); j++) {
