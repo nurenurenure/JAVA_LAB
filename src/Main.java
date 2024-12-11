@@ -1,33 +1,21 @@
 public class Main {
     public static void main(String[] args) {
-        Image image = new Image(10, 10);
+        // Создаем изображение
+        Image image = new Image(3, 3);
+        image.setPixel(0, 0, new Pixel(100, 150, 200));
+        image.setPixel(1, 0, new Pixel(120, 170, 220));
+        image.setPixel(2, 0, new Pixel(140, 190, 240));
 
-        PhotoEditor editor = new PhotoEditor(image);
+        // Используем базовый класс
+        Filter baseFilter = new Filter();
+        baseFilter.baseApply(image);
 
-        // Применение фильтра яркости
-        BrightnessFilter brightnessFilter = new BrightnessFilter(50);
-        editor.applyFilter(brightnessFilter);
+        // Используем дочерний класс BrightnessFilter через базовый указатель
+        Filter brightnessFilter = new BrightnessFilter(50);
+        brightnessFilter.baseApply(image); // Вызов через базовый класс
 
-        editor.showImageInfo();
-
-        Image image2 = new Image(5, 5);
-
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 5; x++) {
-                int r = (x * 50) % 256;
-                int g = (y * 50) % 256;
-                Pixel pixel = new Pixel(r, g, 0);
-                image2.setPixel(x, y, pixel);
-            }
-        }
-
-        System.out.println("Original Image Pixels:");
-        for (int y = 0; y < 5; y++) {
-            for (int x = 0; x < 5; x++) {
-                Pixel pixel = image.getPixel(x, y);
-                System.out.print("[" + pixel.getR() + "," + pixel.getG() + "," + pixel.getB() + "] ");
-            }
-            System.out.println();
-        }
+        // Пример работы с не виртуальным методом (если apply не переопределен)
+        Filter simpleFilter = new Filter();
+        simpleFilter.apply(image); // Всегда вызов базового метода
     }
 }

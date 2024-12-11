@@ -17,6 +17,9 @@ public class Image {
     public int getWidth() {
         return width;
     }
+    private int clamp(int value) {
+        return Math.max(0, Math.min(255, value));
+    }
 
     public int getHeight() {
         return height;

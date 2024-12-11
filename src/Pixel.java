@@ -1,3 +1,6 @@
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 public class Pixel {
     private int R;
     private int G;
@@ -61,6 +64,9 @@ public class Pixel {
     // Статический метод для получения количества объектов Pixel
     public static int getPixelCount() {
         return pixelCount;
+    }
+    static int clamp(int value) {
+        return max(0, min(255, value));
     }
 
 }

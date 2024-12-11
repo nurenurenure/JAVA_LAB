@@ -1,5 +1,5 @@
 public class BlackAndWhiteFilter extends Filter{
-    public Image apply(Image image) {
+    public void apply(Image image) {
         for (int i = 0; i < image.getWidth(); i++) {
             for (int j = 0; j < image.getHeight(); j++) {
                 Pixel pixel = image.getPixel(i, j);
@@ -8,6 +8,5 @@ public class BlackAndWhiteFilter extends Filter{
                 image.setPixel(i, j, grayPixel);
             }
         }
-        return image;
     }
 }
