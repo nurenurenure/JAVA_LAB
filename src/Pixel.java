@@ -68,5 +68,7 @@ public class Pixel {
     static int clamp(int value) {
         return max(0, min(255, value));
     }
-
+    public void display() {
+        System.out.print("(" + R + ", " + G + ", " + B + ")");
+    }
 }

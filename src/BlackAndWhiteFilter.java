@@ -1,12 +1,14 @@
 public class BlackAndWhiteFilter extends Filter{
-    public void apply(Image image) {
-        for (int i = 0; i < image.getWidth(); i++) {
-            for (int j = 0; j < image.getHeight(); j++) {
-                Pixel pixel = image.getPixel(i, j);
-                int gray = pixel.getGray();
-                Pixel grayPixel = new Pixel(gray, gray, gray);
-                image.setPixel(i, j, grayPixel);
-            }
-        }
+    // Конструктор производного класса
+    public BlackAndWhiteFilter(String filterName, int level) {
+        super(filterName); // Вызов конструктора базового класса
+        this.brightnessLevel = level;
+        System.out.println("BrightnessFilter derived class constructor called with level: "
+                + brightnessLevel);
+    }
+    private int brightnessLevel;
+    public void apply() {
+        System.out.println("Applying brightness filter: " + name
+                + " with level " + brightnessLevel);
     }
 }

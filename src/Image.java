@@ -52,4 +52,38 @@ public class Image {
         width = newWidth;
         height = newHeight;
     }
+    protected Object clone() {
+        try {
+            // Вызов стандартного клонирования от Object
+            Image cloned = (Image) super.clone();
+            // Клонируем только массив ссылок на пиксели (поверхностно)
+            cloned.pixels = this.pixels.clone();
+            return cloned;
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+            return null; // В случае ошибки возвращаем null
+        }
+    }
+    public Image deepClone() {
+        // Создаем новое изображение с такими же размерами
+        Image deepCloned = new Image(this.width, this.height);
+
+        // Копируем каждый пиксель
+        for (int i = 0; i < this.width; i++) {
+            for (int j = 0; j < this.height; j++) {
+                Pixel originalPixel = this.pixels[i][j];
+                deepCloned.setPixel(i, j, new Pixel(originalPixel.getR(), originalPixel.getG(), originalPixel.getB()));
+            }
+        }
+        return deepCloned;
+    }
+    public void display() {
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                pixels[i][j].display();
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
 }
